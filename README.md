@@ -1,3 +1,6 @@
+![alt text](readme.gif)
+
+
 
 https://goto-developer.logmeininc.com/how-get-access-token-and-organizer-key
 
