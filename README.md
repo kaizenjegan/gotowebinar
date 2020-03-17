@@ -1,5 +1,6 @@
 # Create Webinar
 
+A simple interface for programmatically creating a Goto Webinar
 ![alt text](readme.gif)
 
 
