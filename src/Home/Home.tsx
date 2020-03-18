@@ -12,7 +12,6 @@ export const Home: React.FC = () => {
     return(<div>
         <h1>Home</h1>
 
-
         <Link href="https://api.getgo.com/oauth/v2/authorize?client_id=pTSMx3bOCnEykUzvAFRpboIsiHAA0Shv&response_type=code" color="inherit">
             Login 
         </Link>

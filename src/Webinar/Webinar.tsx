@@ -35,7 +35,7 @@ const Webinar: React.FC = () => {
 
 
 
-  const createWebinar = (event:IEvent): any => {
+  const createWebinar = async (event:IEvent) => {
 
     if(!event.subject || !event.description || !event.startTime || !event.endTime){
         alert('uh oh')
@@ -53,31 +53,14 @@ const Webinar: React.FC = () => {
         }]
       }
 
-      // const consumerCred = base64encode(`${consumer.key}:${consumer.secret}`);
-      const respCode:string = getResponseCode() || "";
-      // const authToken = getAuthToken(consumerCred, respCode);
       
-      api.authenticate(respCode).then( (auth : any) => {
-        auth = JSON.parse(auth);
+    const respCode:string = getResponseCode() || "";
 
-        console.log(`response code; ${auth.access_token}`);
+    const data = await api.authenticate(respCode);
+    const auth = JSON.parse(data);
 
-        api.createWebinar(auth.access_token, auth.organizer_key, webinar).then( (data:any) => {
-            // Process html like you would with jQuery...
-            console.log(data);
-            data = JSON.parse(data);
-            let webinarKey = data.webinarKey;
-            console.log(webinarKey);
-            setOpen(true);
-            setWebinarKey(webinarKey);
-            //build link
-        })
-        .catch( (err:any) => {
-            // Crawling failed or Cheerio choked...
-            console.log(err);
-        });
-      });
-    }
+    const webinarPayload = await api.createWebinar(auth.access_token, auth.organizer_key, webinar);
+  }
     const {inputs, handleInputChange, handleSubmit} = WebinarForm({
       subject: "",
       description: "",
